@@ -1,4 +1,6 @@
-import { Pressable, View, StyleSheet } from 'react-native';
+import { Pressable, View, StyleSheet, ScrollView } from 'react-native';
+import { Link } from 'react-router-native';
+
 import Constants from 'expo-constants';
 import Text from './Text'
 
@@ -23,7 +25,16 @@ const styles = StyleSheet.create({
 const AppBar = () => {
  
   return <View style={styles.container}  >{<Pressable  onPress={onPressFunction}>
-  <Text > Repositories</Text>
+
+        <ScrollView horizontal = {true} style={styles.container} >
+        <Text > Repositories</Text>
+  <Link to="/signin"><Text > Sign in</Text></Link>
+  
+
+        </ScrollView>
+
+  
+
 </Pressable>}</View>;
 };
 
