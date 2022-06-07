@@ -13,23 +13,23 @@ const styles = StyleSheet.create({
   container:  {
     
     
-    margin: "32px auto 37px",
-    maxWidth: "530px",
+  
+    maxWidth: 530,
    
-    padding: "30px",
-    borderRadius: "10px",
-    boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.15)"
+    padding: 30,
+   
+    borderColor: 'black',
+    borderWidth: 1
 
       
   },
   errorContainer: {
-    border: '1px solid red',
-    margin: "32px auto 37px",
-    maxWidth: "530px",
     
-    padding: "30px",
-    borderRadius: "10px",
-    boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.15)"
+    maxWidth: 530,
+   
+    padding: 30,
+    borderColor: 'red',
+    borderWidth: 1
 
   }
 });

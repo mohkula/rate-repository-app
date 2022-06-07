@@ -3,6 +3,7 @@ import {  Pressable, View, StyleSheet } from 'react-native';
 import Text from './Text';
 
 
+
 const styles = StyleSheet.create({
 
   container: {
@@ -20,7 +21,7 @@ const SigninForm = ({ onSubmit }) => {
         <FormikTextInput secureTextEntry={true} name="Password" placeholder="Password" />
         <Pressable onPress={onSubmit}>
          <View style ={styles.container}>
-         <Text  color={'primary'}>Sign in</Text>
+         <Text font={'default'} color={'primary'}>Sign in</Text>
          </View>
           
         </Pressable>
