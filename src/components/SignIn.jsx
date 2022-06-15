@@ -1,5 +1,6 @@
 import SigninForm from './SigninForm';
 import * as yup from 'yup';
+import AuthStorage from '../utils/authStorage';
 
 import useSignIn from '../hooks/useSignIn';
 import { Formik  } from 'formik';
@@ -41,6 +42,7 @@ const SignIn = () => {
       const { data } = await signIn({ username, password });
     } catch (e) {
       console.log(result.data.authenticate.accessToken)
+      
 
       console.log(e);
     }
