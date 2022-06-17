@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
+
 import SigninForm from './SigninForm';
 import * as yup from 'yup';
-import AuthStorage from '../utils/authStorage';
 
 import useSignIn from '../hooks/useSignIn';
 import { Formik  } from 'formik';
+import { View } from "react-native";
+
+
+
 
 const initialValues = {
     Username: '',
@@ -25,12 +31,12 @@ const initialValues = {
 
 
 const SignIn = () => {
- const [signIn, result] = useSignIn();
-    
+ const [signIn] = useSignIn();
+ const navigate = useNavigate();
+
 
 
   const onSubmit = async (values) => {
-    
    const username = values.Username
    const password = values.Password
    
@@ -39,14 +45,17 @@ const SignIn = () => {
    
 
     try {
-      const { data } = await signIn({ username, password });
+      await signIn({ username, password });
+      navigate("/")
     } catch (e) {
-      console.log(result.data.authenticate.accessToken)
+      
+     
       
 
       console.log(e);
     }
 
+    
 
      
 
@@ -56,9 +65,15 @@ const SignIn = () => {
 
 
         return (
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+         <View>
+  <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
               {({ handleSubmit }) => <SigninForm  onSubmit={handleSubmit}  />}
+              
+              
             </Formik>
+
+            </View>
+          
           );
      
   
