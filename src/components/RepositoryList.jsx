@@ -11,6 +11,12 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
+
+
+
+
+
+
 const RepositoryList = () => {
   const { repositories, loading, refetch } = useRepositories();
 
@@ -22,6 +28,8 @@ const RepositoryList = () => {
     ? repositories.edges.map(edge => edge.node)
     : [];
     return (
+      <View testID="repositoryItem" style={{ flex: 1 }}>
+
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
@@ -31,8 +39,8 @@ const RepositoryList = () => {
   
         )}
       />
+      </View>
     );
 };
 
 export default RepositoryList;
-
