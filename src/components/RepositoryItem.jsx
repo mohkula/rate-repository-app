@@ -1,4 +1,5 @@
-import {  View, Image, StyleSheet  } from 'react-native';
+import {  View, Image, StyleSheet, Pressable  } from 'react-native';
+import { useNavigate } from 'react-router-native';
 
 
 
@@ -55,7 +56,18 @@ const styles = StyleSheet.create({
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)}
 
 const RepositoryItem = ({item}) => {
+
+  const navigate = useNavigate()
+  const onPressFunction = () => {
+
+console.log(`/repository/${item.id}`)
+    navigate(`/repository/${item.id}`)
+  }
+
+
     return(
+      <Pressable onPress={onPressFunction}>
+
         <View testID="repositoryItem" style= {styles.flexItemA}>   
 <View style = {styles.flexContainer}> 
 <Image source={{ uri: item.ownerAvatarUrl}} style={styles.logo}></Image>
@@ -82,10 +94,12 @@ const RepositoryItem = ({item}) => {
               </View>
               <View style = {styles.flexItemA}>
               <Text color="textSecondary" fontWeight='bold'>{kFormatter(item.ratingAverage)}</Text>
-              <Text color="textSecondary">Ratings</Text>
+              <Text color="textSecondary">Rating</Text>
           </View>
           </View>
           </View>
+          </Pressable>
+
     )
 }
 
