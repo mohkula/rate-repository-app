@@ -1,4 +1,4 @@
-import { Pressable, View, StyleSheet, ScrollView } from 'react-native';
+import { Pressable, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 
 import { useState, useEffect } from 'react';
@@ -17,16 +17,25 @@ const onPressFunction = () =>{
 
 
 
+
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight * 2, 
     backgroundColor: '#24292e',
     paddingBottom: Constants.statusBarHeight,
     paddingLeft: Constants.statusBarHeight,
+ 
+    flexDirection: 'row',
+    width: "100%",
+    display: "flex",
+
     paddingRight: Constants.statusBarHeight
     
     
   },
+
+  
   
  
 });
@@ -50,15 +59,33 @@ const AppBar =  () => {
   }, [])
 
 
-  const signOut = async () => {
 
+  const loggedView = () => {
 
-    await authStorage.removeAccessToken()
-    await ApolloClient.resetStore()
-    setToken(null)
-   
+    const signOut = async () => {
   
+  
+      await authStorage.removeAccessToken()
+      await ApolloClient.resetStore()
+      setToken(null)
+     
+    
+    }
+  
+    return (
+  <View style={styles.container}>
+
+<Text > Repositories</Text>
+      <Pressable  onPress={signOut}>
+  
+           <Text > Sign out</Text> 
+           </Pressable>
+
+           <Link to="/review"><Text > Create a review</Text></Link>
+</View>
+    )
   }
+ 
  
 
   const {data} = useQuery(ME, {
@@ -75,27 +102,28 @@ const AppBar =  () => {
   
 
 
-  return <View style={styles.container}  >
+  return (
     <Pressable  onPress={onPressFunction}>
 
-        <ScrollView horizontal = {true} style={styles.container} >
-        <Text > Repositories</Text>
+        <ScrollView horizontal = {true} style={styles.container}  >
+       
 
-        {loggedUser ? <Pressable  onPress={signOut}>
+        {loggedUser ? loggedView() : 
+         <View style={styles.container}>
 
-         <Text > Sign out</Text> 
-         </Pressable>
-        :
-          <Link to="/signin"><Text > Sign in</Text></Link>
+         
+         <Text > Repositories</Text>
+        <Link to="/signin"><Text > Sign in</Text></Link>
+        </View>
         }
-
-  
-
+        
         </ScrollView>
 
   
 
-</Pressable></View>;
+</Pressable>
+  )
+
 };
 
 export default AppBar;

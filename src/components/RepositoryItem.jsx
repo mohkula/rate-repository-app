@@ -60,6 +60,7 @@ const RepositoryItem = ({item}) => {
   const navigate = useNavigate()
   const onPressFunction = () => {
 
+    console.log(item.id)
     navigate(`/repository/${item.id}`)
   }
 
@@ -71,7 +72,8 @@ const RepositoryItem = ({item}) => {
 <View style = {styles.flexContainer}> 
 <Image source={{ uri: item.ownerAvatarUrl}} style={styles.logo}></Image>
           <View style = {styles.flexItemA}>
-          <Text color="textSecondary" fontWeight='bold'> {item.fullName}</Text>
+            
+          <Text color="textSecondary" fontWeight='bold'> {item.ownerName}</Text>
           <Text color="textSecondary">{item.description}</Text>
           <View style = {styles.container}>
           <Text>  {item.language}</Text>
