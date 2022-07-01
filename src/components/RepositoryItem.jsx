@@ -60,7 +60,6 @@ const RepositoryItem = ({item}) => {
   const navigate = useNavigate()
   const onPressFunction = () => {
 
-    console.log(item.id)
     navigate(`/repository/${item.id}`)
   }
 
