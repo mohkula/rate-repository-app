@@ -114,6 +114,8 @@ const AppBar =  () => {
          
          <Text > Repositories</Text>
         <Link to="/signin"><Text > Sign in</Text></Link>
+        <Link to="/signup"><Text > Sign up</Text></Link>
+
         </View>
         }
         

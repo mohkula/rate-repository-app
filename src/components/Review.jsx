@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
 
 const Review = () => {
   const navigate = useNavigate();
-  const [createReview, result] = useCreateReview();
+  const [createReview] = useCreateReview();
 
   const onSubmit = async (values) => {
     const { ownerName, repositoryName, rating, text } = values;
