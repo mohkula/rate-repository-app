@@ -5,6 +5,8 @@ query
 Repositories(
   $orderDirection: OrderDirection
   $orderBy: AllRepositoriesOrderBy
+  $searchKeyword: String
+
   
 ) 
 
@@ -12,6 +14,8 @@ Repositories(
     repositories(
       orderDirection: $orderDirection
       orderBy: $orderBy
+      searchKeyword: $searchKeyword
+
      
     ) {
      edges {

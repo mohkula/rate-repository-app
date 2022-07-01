@@ -3,9 +3,11 @@ import useRepositories from '../hooks/useRepositories'
 
 import {Picker} from '@react-native-picker/picker'
 import { useState } from 'react'
-
+import TextInput from './TextInput'
 import { FlatList , View, StyleSheet } from 'react-native'
 import RepositoryItem from './RepositoryItem'
+import { useDebounce } from "use-debounce";
+
 const styles = StyleSheet.create({
   separator: {
     height: 10,
@@ -23,8 +25,9 @@ const ItemSeparator = () => <View style={styles.separator} />;
 const RepositoryList = () => {
 
   const [selectedSort, setselectedSort] = useState("highestRatedRepositories");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedText] = useDebounce(searchQuery, 500);
 
- 
 
 
 const setSortingOption =(option) => {
@@ -64,15 +67,23 @@ case "highestRatedRepositories":
 }
 
 
-  let sort = {
+  let queryObj = {
     orderBy: setSortingOption(selectedSort),
-    orderDirection: setSortingDirection(selectedSort)
+    orderDirection: setSortingDirection(selectedSort),
+    searchKeyword: debouncedText
     
   };
-  const { repositories } = useRepositories(sort);
+  const { repositories } = useRepositories(queryObj);
   
-  const searchPicker = () => {
+  const headerComponent = () => {
     return (
+<View>
+
+
+<TextInput onChangeText={newText => setSearchQuery(newText)}
+/>
+
+
     <Picker
     selectedValue={selectedSort}
     onValueChange={(itemValue, itemIndex) =>
@@ -82,6 +93,7 @@ case "highestRatedRepositories":
     <Picker.Item label="Highest rated repositories" value="highestRatedRepositories" />
     <Picker.Item label="Lowest rated repositories" value="lowestRatedRepositories" />
   </Picker>
+  </View>
     )
   }
   
@@ -104,7 +116,7 @@ case "highestRatedRepositories":
           
   
         )}
-        ListHeaderComponent={searchPicker()}
+        ListHeaderComponent={headerComponent()}
       />
       </View>
     );

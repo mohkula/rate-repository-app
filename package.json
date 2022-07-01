@@ -47,6 +47,7 @@
     "react-native-web": "0.17.7",
     "react-router-dom": "^6.3.0",
     "react-router-native": "6.3.0",
+    "use-debounce": "^8.0.1",
     "webpack-dev-server": "^4.9.2",
     "yup": "^0.32.11"
   },
