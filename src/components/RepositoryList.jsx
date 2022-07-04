@@ -86,7 +86,7 @@ case "highestRatedRepositories":
 
     <Picker
     selectedValue={selectedSort}
-    onValueChange={(itemValue, itemIndex) =>
+    onValueChange={(itemValue) =>
       setselectedSort(itemValue)
     }>
     <Picker.Item label="Latest repositories" value="latestRepositories" />

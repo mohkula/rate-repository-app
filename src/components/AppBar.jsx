@@ -1,4 +1,4 @@
-import { Pressable, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { Pressable, View, StyleSheet, ScrollView } from 'react-native';
 import { Link } from 'react-router-native';
 
 import { useState, useEffect } from 'react';
@@ -82,6 +82,8 @@ const AppBar =  () => {
            </Pressable>
 
            <Link to="/review"><Text > Create a review</Text></Link>
+           <Link to="/myreviews"><Text > My reviews</Text></Link>
+
 </View>
     )
   }
